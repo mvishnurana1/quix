@@ -1,0 +1,13 @@
+.active {
+    background-color: red;
+}
+
+.logo {
+    height: 2rem;
+    width: 2rem;
+}
+
+.logoContainer {
+    display: flex;
+    align-items: center;
+}
