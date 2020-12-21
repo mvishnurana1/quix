@@ -55,7 +55,7 @@ class QuestionDrawer extends Component {
         questionAnswerSet.push(qAndAObject); 
         
         await new Promise (resolve => 
-            this.setState({ questionAnswerPair: [ ...this.state.questionAnswerPair, questionAnswerSet] }, 
+            this.setState({ questionAnswerPair: [ ...this.state.questionAnswerPair, qAndAObject] }, 
             resolve)
         ); 
 
