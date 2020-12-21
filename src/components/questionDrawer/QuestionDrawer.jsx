@@ -49,7 +49,6 @@ class QuestionDrawer extends Component {
         optionsList.push(optionFour);
 
         const qAndAObject = {}; 
-        qAndAObject.id = uuid(); 
         qAndAObject.options = optionsList; 
         qAndAObject.answer = answer; 
 
