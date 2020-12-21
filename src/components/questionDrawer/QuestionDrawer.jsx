@@ -52,16 +52,12 @@ class QuestionDrawer extends Component {
         qAndAObject.options = optionsList; 
         qAndAObject.answer = answer; 
 
-        console.log(qAndAObject); 
-
         questionAnswerSet.push(qAndAObject); 
         
         await new Promise (resolve => 
             this.setState({ questionAnswerPair: [ ...this.state.questionAnswerPair, questionAnswerSet] }, 
             resolve)
         ); 
-
-        console.log(this.state.questionAnswerPair); 
 
         event.preventDefault();
     }
