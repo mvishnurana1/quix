@@ -38,6 +38,7 @@ class QuestionDrawer extends Component {
             optionTwo, 
             optionThree, 
             optionFour, 
+            question
         } = this.state; 
 
         const optionsList = []; 
@@ -49,6 +50,7 @@ class QuestionDrawer extends Component {
         optionsList.push(optionFour);
 
         const qAndAObject = {}; 
+        qAndAObject.question = question; 
         qAndAObject.options = optionsList; 
         qAndAObject.answer = answer; 
 
