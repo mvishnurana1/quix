@@ -5,7 +5,6 @@ import { Button,
 import React, { Component } from 'react';
 import { GoQuestion } from "react-icons/go";
 import { IoAddCircle, IoEllipseSharp } from "react-icons/io5";
-import { uuid } from 'react-uuid'; 
 
 import './QuestionDrawer.css'; 
 
@@ -61,6 +60,17 @@ class QuestionDrawer extends Component {
             resolve)
         ); 
 
+        console.log('Q And A list: ', this.state.questionAnswerPair); 
+
+        this.setState({
+            answer: '',
+            optionOne: '',
+            optionTwo: '', 
+            optionThree: '', 
+            optionFour: '',
+            question: ''
+        });
+
         event.preventDefault();
     }
 
@@ -113,7 +123,7 @@ class QuestionDrawer extends Component {
                     onChange={(event) => this.handleChange(event)}
                     size="small" 
                     variant="outlined" 
-                    value={this.state.value}
+                    value={this.state.optionOne}
                 />
                 <TextField  
                     InputProps={{
@@ -132,7 +142,7 @@ class QuestionDrawer extends Component {
                     onChange={(event) => this.handleChange(event)}
                     size="small" 
                     variant="outlined" 
-                    value={this.state.value}
+                    value={this.state.optionTwo}
                 />
                 <TextField  
                     InputProps={{
@@ -151,7 +161,7 @@ class QuestionDrawer extends Component {
                     onChange={(event) => this.handleChange(event)}
                     size="small" 
                     variant="outlined" 
-                    value={this.state.value}
+                    value={this.state.optionThree}
                 />
                 <TextField  
                     InputProps={{
@@ -170,7 +180,7 @@ class QuestionDrawer extends Component {
                     onChange={(event) => this.handleChange(event)}
                     size="small" 
                     variant="outlined" 
-                    value={this.state.value}
+                    value={this.state.optionFour}
                 />
             </div>
             <div>
