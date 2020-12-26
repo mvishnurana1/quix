@@ -219,7 +219,7 @@ class QuestionDrawer extends Component {
                 {(questionAnswerPair.length >= 1) 
                     ? <div className="submitQuizButton">
                         <h3> Submit Quiz </h3>
-                        <IoAddCircle className="logo" onClick={() => this.setState({ addingQuestion: true }) }  />
+                        <CheckCircleRoundedIcon className="logo" onClick={() => this.setState({ quizSubmitted: true }) }  />
                     </div>
                     : null
                 }
