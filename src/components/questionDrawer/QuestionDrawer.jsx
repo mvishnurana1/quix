@@ -2,6 +2,7 @@ import { Button,
     InputAdornment,
     SwipeableDrawer, 
     TextField } from '@material-ui/core';
+import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 import React, { Component } from 'react';
 import { GoQuestion } from "react-icons/go";
 import { IoAddCircle, IoEllipseSharp } from "react-icons/io5";
@@ -20,7 +21,8 @@ class QuestionDrawer extends Component {
             optionThree: null, 
             optionFour: null, 
             question: null, 
-            questionAnswerPair: []
+            questionAnswerPair: [], 
+            quizSubmitted: false
         }
     }
 
@@ -63,6 +65,7 @@ class QuestionDrawer extends Component {
         console.log('Q And A list: ', this.state.questionAnswerPair); 
 
         this.setState({
+            addingQuestion: false, 
             answer: '',
             optionOne: '',
             optionTwo: '', 
@@ -75,29 +78,29 @@ class QuestionDrawer extends Component {
     }
 
     renderQuestionTextfield() {
-        const { addingQuestion, question } = this.state;
-        
+        const {  addingQuestion, question } = this.state;
+
         if (addingQuestion) {
             return <div className="questionTextfield">
-                    <TextField 
-                        autoFocus
-                        fullWidth
-                        multiline
-                        name="question"
-                        label="new question" 
-                        InputProps={{
-                            startAdornment: (
-                            <InputAdornment position="start">
-                                <GoQuestion />
-                            </InputAdornment>
-                            ),
-                        }}
-                        onChange={(event) => this.handleChange(event)}
-                        size='medium'
-                        variant="outlined" 
-                        value={question}
-                    />
-                </div>
+            <TextField 
+                autoFocus
+                fullWidth
+                multiline
+                name="question"
+                label="new question" 
+                InputProps={{
+                    startAdornment: (
+                    <InputAdornment position="start">
+                        <GoQuestion />
+                    </InputAdornment>
+                    ),
+                }}
+                onChange={(event) => this.handleChange(event)}
+                size='medium'
+                variant="outlined" 
+                value={question}
+            />
+        </div>
         }
     }
 
@@ -197,18 +200,29 @@ class QuestionDrawer extends Component {
     }
 
     render() {
-        const { addingQuestion } = this.state; 
+        const { addingQuestion, questionAnswerPair } = this.state; 
         return (
             <SwipeableDrawer 
                 anchor='bottom'
                 open={this.props.open} 
                 onClose={() => null}
                 onOpen={() => null}
-            >
-                {!addingQuestion && <div className="logoContainer">
-                    <h3> Add more Questions </h3>
+            >   
+                {!addingQuestion && 
+                <div style={{ display: 'flex', justifyContent: 'center'}}>
+                <div className="logoContainer">
+                    <h3> Add Question </h3>
                     <IoAddCircle className="logo" onClick={() => this.setState({ addingQuestion: true }) }  />
-                </div>} 
+                </div>
+                {(questionAnswerPair.length >= 1) ?
+                (<div className="logoContainer">
+                        <h3> Submit Quiz </h3>
+                        <IoAddCircle className="logo" onClick={() => this.setState({ addingQuestion: true }) }  />
+                    </div>)
+                    : null
+                }
+                </div>
+                } 
                 {this.renderQuestionTextfield()}
                 {this.renderOptionsTextFields()}
             </SwipeableDrawer>
