@@ -39,7 +39,7 @@ class QuestionDrawer extends Component {
             optionTwo, 
             optionThree, 
             optionFour, 
-            question
+            question, 
         } = this.state; 
 
         const optionsList = []; 
