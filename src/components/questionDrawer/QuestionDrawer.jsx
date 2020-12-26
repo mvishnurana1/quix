@@ -211,16 +211,16 @@ class QuestionDrawer extends Component {
                 onOpen={() => null}
             >   
                 {!addingQuestion && 
-                <div style={{ display: 'flex', justifyContent: 'center'}}>
+                <div style={{ alignItems: 'center', display: 'flex', justifyContent: 'space-evenly'}}>
                 <div className="logoContainer">
                     <h3> Add Question </h3>
                     <IoAddCircle className="logo" onClick={() => this.setState({ addingQuestion: true }) }  />
                 </div>
-                {(questionAnswerPair.length >= 1) ?
-                (<div className="logoContainer">
+                {(questionAnswerPair.length >= 1) 
+                    ? <div className="submitQuizButton">
                         <h3> Submit Quiz </h3>
                         <IoAddCircle className="logo" onClick={() => this.setState({ addingQuestion: true }) }  />
-                    </div>)
+                    </div>
                     : null
                 }
                 </div>
