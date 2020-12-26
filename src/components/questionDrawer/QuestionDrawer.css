@@ -14,10 +14,12 @@
 }
 
 .logoContainer {
+    display: flex;
+}
+
+.submitQuizButton {
     align-items: center;
     display: flex;
-    justify-content: center;
-    
 }
 
 .optionsTextField {
