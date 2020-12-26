@@ -45,6 +45,8 @@ class QuestionDrawer extends Component {
         const optionsList = []; 
         const questionAnswerSet = []; 
 
+        // verify state variables if they're valid
+
         optionsList.push(optionOne);
         optionsList.push(optionTwo);
         optionsList.push(optionThree);
