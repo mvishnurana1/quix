@@ -9,6 +9,8 @@ import { IoAddCircle, IoEllipseSharp } from "react-icons/io5";
 
 import './QuestionDrawer.css'; 
 
+import QuestionPreview from './QuestionPreview';
+
 class QuestionDrawer extends Component {
     constructor(props) {
         super(props);
@@ -109,7 +111,7 @@ class QuestionDrawer extends Component {
     renderOptionsTextFields() {
         const { addingQuestion, answer } = this.state; 
         if (addingQuestion) {
-            return <div style={{display: 'flex', padding: '0 10% 3rem 10%', justifyContent: 'space-between' }}>
+            return <div style={{display: 'flex', padding: '1rem 10% 3rem 10%', justifyContent: 'space-between' }}>
             <div  className="optionsTextField">
                 <TextField  
                     InputProps={{
@@ -197,6 +199,15 @@ class QuestionDrawer extends Component {
                     Add
                 </Button>
             </div>
+            <div>
+                <Button 
+                    color="primary" 
+                    variant="outlined"
+                    onClick={() => this.setState({ addingQuestion: false })}
+                >
+                    Cancel
+                </Button>
+            </div>
         </div>
         }
     }
@@ -210,6 +221,7 @@ class QuestionDrawer extends Component {
                 onClose={() => null}
                 onOpen={() => null}
             >   
+                <QuestionPreview questionAnswerPair={questionAnswerPair} />
                 {!addingQuestion && 
                 <div style={{ alignItems: 'center', display: 'flex', justifyContent: 'space-evenly'}}>
                 <div className="logoContainer">
