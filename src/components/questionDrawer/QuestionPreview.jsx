@@ -10,8 +10,11 @@ const QuestionPreview = ({ questionAnswerPair }) => {
         setExpanded(!expanded)
     }
 
-    return questionAnswerPair.map(({ question, options }) => <div style={{ marginLeft: '10%'}}>
-        <h3 className="questionOptions" style={{ marginBottom: 0 }}>{question}</h3>
+    return questionAnswerPair.map(({ question, options }, index) => <div style={{ marginLeft: '10%'}}>
+        <div style={{ display: 'flex'}}>
+            <h3 style={{marginRight: '1rem'}}>Question {index + 1}.)</h3>
+            <h3 className="questionOptions" style={{ marginBottom: 0 }}>{question}</h3>
+        </div>
         <IconButton
             aria-expanded={expanded}
             aria-label="show more"
