@@ -5,7 +5,7 @@ import './TrainingQuestions.css';
 
 import QuestionInput from '../questionDrawer';  
 
-class TrainingQuestions extends Component {
+class TrainingQuestions extends Component { 
     constructor(props) {
         super(props);
         this.state = {
