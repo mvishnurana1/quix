@@ -23,7 +23,43 @@ class QuestionDrawer extends Component {
             optionThree: null, 
             optionFour: null, 
             question: null, 
-            questionAnswerPair: [], 
+            questionAnswerPair: [{
+                question: 'Is this question 1 ?',
+                answer: 'abc', 
+                options: ['a', 'b', 'c' , 'd']
+            }, {
+                question: 'Is this question 2 ?',
+                answer: 'sdvsdgvwer', 
+                options: ['option', 'option', 'option' , 'option']
+            }, {
+                question: 'Is this question 3 ?',
+                answer: 'abc', 
+                options: ['option', 'option', 'option' , 'option']
+            },{
+                question: 'Is this question 1 ?',
+                answer: 'abc', 
+                options: ['a', 'b', 'c' , 'd']
+            }, {
+                question: 'Is this question 2 ?',
+                answer: 'sdvsdgvwer', 
+                options: ['option', 'option', 'option' , 'option']
+            }, {
+                question: 'Is this question 3 ?',
+                answer: 'abc', 
+                options: ['option', 'option', 'option' , 'option']
+            },{
+                question: 'Is this question 1 ?',
+                answer: 'abc', 
+                options: ['a', 'b', 'c' , 'd']
+            }, {
+                question: 'Is this question 2 ?',
+                answer: 'sdvsdgvwer', 
+                options: ['option', 'option', 'option' , 'option']
+            }, {
+                question: 'Is this question 3 ?',
+                answer: 'abc', 
+                options: ['option', 'option', 'option' , 'option']
+            }], 
             quizSubmitted: false
         }
     }
