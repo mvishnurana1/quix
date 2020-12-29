@@ -12,7 +12,7 @@ const QuestionPreview = ({ questionAnswerPair }) => {
 
     return questionAnswerPair.map(({ question, options }, index) => <div style={{ marginLeft: '10%'}}>
         <div style={{ display: 'flex'}}>
-            <h3 style={{marginRight: '1rem'}}>Question {index + 1}.)</h3>
+            <h3 style={{marginRight: '1rem'}}>Question {index + 1}.</h3>
             <h3 className="questionOptions" style={{ marginBottom: 0 }}>{question}</h3>
         </div>
         <IconButton
