@@ -6,6 +6,7 @@ import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 import React, { Component } from 'react';
 import { GoQuestion } from "react-icons/go";
 import { IoAddCircle, IoEllipseSharp } from "react-icons/io5";
+import uuid from 'react-uuid'; 
 
 import './QuestionDrawer.css'; 
 
@@ -17,45 +18,54 @@ class QuestionDrawer extends Component {
         this.state = {
             addingQuestion: false,
             addingOption: false,
-            answer: null,
-            optionOne: null,
-            optionTwo: null,
-            optionThree: null, 
-            optionFour: null, 
-            question: null, 
+            answer: "",
+            optionOne: "",
+            optionTwo: "",
+            optionThree: "", 
+            optionFour: "", 
+            question: "", 
             questionAnswerPair: [{
+                id: uuid(), 
                 question: 'Is this question 1 ?',
                 answer: 'abc', 
                 options: ['a', 'b', 'c' , 'd']
             }, {
+                id: uuid(), 
                 question: 'Is this question 2 ?',
                 answer: 'sdvsdgvwer', 
                 options: ['option', 'option', 'option' , 'option']
             }, {
+                id: uuid(), 
                 question: 'Is this question 3 ?',
                 answer: 'abc', 
                 options: ['option', 'option', 'option' , 'option']
             },{
+                id: uuid(), 
                 question: 'Is this question 1 ?',
                 answer: 'abc', 
                 options: ['a', 'b', 'c' , 'd']
             }, {
+                id: uuid(), 
                 question: 'Is this question 2 ?',
                 answer: 'sdvsdgvwer', 
                 options: ['option', 'option', 'option' , 'option']
             }, {
+                id: uuid(), 
                 question: 'Is this question 3 ?',
                 answer: 'abc', 
                 options: ['option', 'option', 'option' , 'option']
             },{
+                id: uuid(), 
                 question: 'Is this question 1 ?',
                 answer: 'abc', 
                 options: ['a', 'b', 'c' , 'd']
             }, {
+                id: uuid(), 
                 question: 'Is this question 2 ?',
                 answer: 'sdvsdgvwer', 
                 options: ['option', 'option', 'option' , 'option']
             }, {
+                id: uuid(), 
                 question: 'Is this question 3 ?',
                 answer: 'abc', 
                 options: ['option', 'option', 'option' , 'option']
@@ -91,6 +101,7 @@ class QuestionDrawer extends Component {
         optionsList.push(optionFour);
 
         const qAndAObject = {}; 
+        qAndAObject.id = uuid(); 
         qAndAObject.question = question; 
         qAndAObject.options = optionsList; 
         qAndAObject.answer = answer; 
