@@ -22,7 +22,7 @@ class QuestionPreview extends Component {
         return questionAnswerPair.map(({ id, question, options }, index) => 
         <div key={id} style={{ marginLeft: '10%'}}>
             <div style={{ display: 'flex'}}>
-                <h3 style={{marginRight: '1rem'}}>Question {index + 1}.</h3>
+                <h3 style={{marginRight: '1rem', minWidth: '3rem'}}>Q {index + 1}.</h3>
                 <h3 className="questionOptions" style={{ marginBottom: 0 }}>{question}</h3>
             </div>
             <IconButton
