@@ -1,38 +1,48 @@
-import React, { useState } from 'react'; 
-import { Collapse } from '@material-ui/core';
+import React, { Component } from 'react'; 
+import { Button, Collapse } from '@material-ui/core';
 import IconButton from "@material-ui/core/IconButton";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-const QuestionPreview = ({ questionAnswerPair }) => {
-    const [expanded, setExpanded] = useState(false); 
-
-    const handleExapandClick = () => {
-        setExpanded(!expanded)
+class QuestionPreview extends Component {
+    constructor(props) {
+        super(props); 
+        this.state = {
+            expanded: false,
+            expandedID: null,
+        }
     }
 
-    return questionAnswerPair.map(({ question, options }, index) => <div style={{ marginLeft: '10%'}}>
-        <div style={{ display: 'flex'}}>
-            <h3 style={{marginRight: '1rem'}}>Question {index + 1}.</h3>
-            <h3 className="questionOptions" style={{ marginBottom: 0 }}>{question}</h3>
+    toggleExpand(id) {
+        this.setState({ expanded: true }, () => console.log(id))
+    }
+
+    render() {
+        const { questionAnswerPair } = this.props; 
+        const { expanded } = this.state; 
+        return questionAnswerPair.map(({ id, question, options }, index) => 
+        <div key={id} style={{ marginLeft: '10%'}}>
+            <div style={{ display: 'flex'}}>
+                <h3 style={{marginRight: '1rem'}}>Question {index + 1}.</h3>
+                <h3 className="questionOptions" style={{ marginBottom: 0 }}>{question}</h3>
+            </div>
+            <IconButton
+                aria-label="show more"
+                style={expanded ? { backgroundColor: 'black', color: 'white' }: null }
+            >
+            <ExpandMoreIcon 
+                onClick={() => this.setState({ expanded: !expanded, expandedID: id })} 
+                style={(id === expanded) ? {transform: 'rotate(0deg)' }: {transform: 'rotate(180deg)' }} 
+            />
+            </IconButton>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+                {options.map((option) => <div>
+                        {option}
+                    </div>
+                )}
+            </Collapse>
         </div>
-        <IconButton
-            aria-expanded={expanded}
-            aria-label="show more"
-            style={expanded ? { backgroundColor: 'black', color: 'white' }: null }
-        >
-        <ExpandMoreIcon 
-            onClick={handleExapandClick} 
-            style={expanded ? {transform: 'rotate(0deg)' }: {transform: 'rotate(180deg)' }} 
-        />
-        </IconButton>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-            {options.map((option) => <div>
-                    {option}
-                </div>
-            )}
-        </Collapse>
-    </div>
-    )
+        )
+    }
 }
 
 export default QuestionPreview; 
