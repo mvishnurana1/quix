@@ -18,7 +18,7 @@ class QuestionPreview extends Component {
 
     render() {
         const { questionAnswerPair } = this.props; 
-        const { expanded } = this.state; 
+        const { expanded, expandedID } = this.state; 
         return questionAnswerPair.map(({ id, question, options }, index) => 
         <div key={id} style={{ marginLeft: '10%'}}>
             <div style={{ display: 'flex'}}>
@@ -27,14 +27,15 @@ class QuestionPreview extends Component {
             </div>
             <IconButton
                 aria-label="show more"
-                style={expanded ? { backgroundColor: 'black', color: 'white' }: null }
+                style={expandedID === id ? { backgroundColor: 'black', color: 'white' }: null }
             >
             <ExpandMoreIcon 
                 onClick={() => this.setState({ expanded: !expanded, expandedID: id })} 
-                style={(id === expanded) ? {transform: 'rotate(0deg)' }: {transform: 'rotate(180deg)' }} 
+                style={(id === expandedID) ? {transform: 'rotate(0deg)' }: {transform: 'rotate(180deg)' }} 
             />
             </IconButton>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
+            {console.log(expandedID, id)}
+            <Collapse in={expandedID === id} timeout="auto" unmountOnExit>
                 {options.map((option) => <div>
                         {option}
                     </div>
