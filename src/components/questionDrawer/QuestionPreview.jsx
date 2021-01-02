@@ -13,15 +13,27 @@ class QuestionPreview extends Component {
         }
     } 
 
-    toggleExpanded() {
-        const { exapandedID, expandedList } = this.state; 
+    toggleOptions() {
+        const { expandedID, expandedList } = this.state; 
+        console.log('expandedID : ', expandedID); 
 
-        this.setState({ exapandedList: [ ...expandedList, exapandedID]  })
+        const index = expandedList.indexOf(expandedID); 
+
+        if (index === -1) {
+            this.setState({ expandedList: [ ...expandedList, expandedID] }); 
+            return; 
+        }
+        else {
+            const list = expandedList; 
+            list.splice(index, 1);
+            this.setState({ expandedList: list }); 
+            return; 
+        }
     }
 
     render() {
         const { questionAnswerPair } = this.props; 
-        const { expanded, expandedID, expandedList } = this.state; 
+        const { expandedList } = this.state; 
 
         return questionAnswerPair.map(({ id, question, options }, index) => 
         <div key={id} style={{ margin: '0 10%'}}>
@@ -31,8 +43,10 @@ class QuestionPreview extends Component {
             </div>
             <IconButton
                 aria-label="show more"
-                onClick={() => this.setState({ expandedID: id, expandedList: [ ...expandedList, id] })} 
-                style={expandedID === id ? { backgroundColor: 'black', color: 'white' }: null }
+                onClick={() => this.setState({ 
+                    expandedID: id, 
+                }, this.toggleOptions())}
+                style={(expandedList.includes(id)) ? { backgroundColor: 'black', color: 'white' }: null }
             >
                 <ExpandMoreIcon 
                     style={(expandedList.includes(id)) ? {transform: 'rotate(0deg)' }: {transform: 'rotate(180deg)' }} 
