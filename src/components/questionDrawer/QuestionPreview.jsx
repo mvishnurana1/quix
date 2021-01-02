@@ -21,13 +21,11 @@ class QuestionPreview extends Component {
 
         if (index === -1) {
             this.setState({ expandedList: [ ...expandedList, expandedID] }); 
-            return; 
         }
         else {
             const list = expandedList; 
             list.splice(index, 1);
             this.setState({ expandedList: list }); 
-            return; 
         }
     }
 
@@ -45,7 +43,7 @@ class QuestionPreview extends Component {
                 aria-label="show more"
                 onClick={() => this.setState({ 
                     expandedID: id, 
-                }, this.toggleOptions())}
+                }, () => this.toggleOptions())}
                 style={(expandedList.includes(id)) ? { backgroundColor: 'black', color: 'white' }: null }
             >
                 <ExpandMoreIcon 
