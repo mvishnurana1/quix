@@ -1,7 +1,9 @@
 import React, { Component } from 'react'; 
-import { Button, Collapse } from '@material-ui/core';
-import IconButton from "@material-ui/core/IconButton";
+import { Collapse } from '@material-ui/core';
+import ClearIcon from '@material-ui/icons/Clear';
+import CreateIcon from '@material-ui/icons/Create';
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import IconButton from "@material-ui/core/IconButton";
 
 class QuestionPreview extends Component {
     constructor(props) {
@@ -50,6 +52,15 @@ class QuestionPreview extends Component {
                     style={(expandedList.includes(id)) ? {transform: 'rotate(0deg)' }: {transform: 'rotate(180deg)' }} 
                 />
             </IconButton>
+            
+            <IconButton>
+                <ClearIcon />
+            </IconButton>
+
+            <IconButton>
+                <CreateIcon />
+            </IconButton>
+
             <Collapse in={(expandedList.includes(id))}>
                 {options.map((option) => <div>
                         {option}
