@@ -9,11 +9,19 @@ class QuestionPreview extends Component {
     constructor(props) {
         super(props); 
         this.state = {
-            expanded: true,
+            expanded: false,
             exapandedID: null,
             expandedList: [],
         }
     } 
+
+    editQuestion() {
+
+    }
+
+    toggleEditQuestion() {
+
+    }
 
     toggleOptions() {
         const { expandedID, expandedList } = this.state; 
@@ -27,13 +35,17 @@ class QuestionPreview extends Component {
         else {
             const list = expandedList; 
             list.splice(index, 1);
+
+            if (expandedList.length === 0) {
+                this.setState({ expanded: false }); 
+            }
             this.setState({ expandedList: list }); 
         }
     }
 
     render() {
         const { questionAnswerPair } = this.props; 
-        const { expandedList } = this.state; 
+        const { expanded, expandedList } = this.state; 
 
         return questionAnswerPair.map(({ id, question, options }, index) => 
         <div key={id} style={{ margin: '0 10%'}}>
@@ -44,6 +56,7 @@ class QuestionPreview extends Component {
             <IconButton
                 aria-label="show more"
                 onClick={() => this.setState({ 
+                    expanded: true,
                     expandedID: id, 
                 }, () => this.toggleOptions())}
                 style={(expandedList.includes(id)) ? { backgroundColor: 'black', color: 'white' }: null }
@@ -54,14 +67,13 @@ class QuestionPreview extends Component {
             </IconButton>
             
             <IconButton>
-                <ClearIcon />
-            </IconButton>
-
-            <IconButton>
                 <CreateIcon />
             </IconButton>
 
-            <Collapse in={(expandedList.includes(id))}>
+            <IconButton>
+                <ClearIcon />
+            </IconButton>
+            <Collapse in={(expandedList.includes(id) && expanded)}>
                 {options.map((option) => <div>
                         {option}
                     </div>
