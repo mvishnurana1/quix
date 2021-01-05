@@ -80,7 +80,8 @@ class QuestionDrawer extends Component {
                 answer: 'optionOne', 
                 options: ['option', 'option', 'option', 'option']
             }], 
-            quizSubmitted: false
+            quizSubmitted: false, 
+            verified: false, 
         }
     }
 
@@ -256,24 +257,51 @@ class QuestionDrawer extends Component {
                     value={this.state.optionFour}
                 />
             </div>
-            <div>
-                <Button 
-                    color="primary" 
-                    variant="outlined"
-                    onClick={(event) => this.onFormSubmit(event)}
-                >
-                    Add
-                </Button>
-            </div>
-            <div>
-                <Button 
-                    color="primary" 
-                    variant="outlined"
-                    onClick={() => this.setState({ addingQuestion: false })}
-                >
-                    Cancel
-                </Button>
-            </div>
+            {
+                this.state.verified ? 
+                <>
+                <div>
+                    <Button 
+                        color="primary" 
+                        variant="outlined"
+                        onClick={(event) => this.onFormSubmit(event)}
+                    >
+                        Add
+                    </Button>
+                </div>
+                <div>
+                    <Button 
+                        color="primary" 
+                        variant="outlined"
+                        onClick={() => this.setState({ addingQuestion: false })}
+                    >
+                        Cancel
+                    </Button>
+                </div>
+                </>
+                : <>
+                <div>
+                    <Button 
+                        color="primary" 
+                        disabled
+                        variant="outlined"
+                        onClick={(event) => this.onFormSubmit(event)}
+                    >
+                        Add
+                    </Button>
+                </div>
+                <div>
+                    <Button 
+                        color="primary" 
+                        variant="outlined"
+                        onClick={() => this.setState({ addingQuestion: false })}
+                    >
+                        Cancel
+                    </Button>
+                </div>
+                </>
+            }
+
         </div>
         }
     }
