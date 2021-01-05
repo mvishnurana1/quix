@@ -34,51 +34,6 @@ class QuestionDrawer extends Component {
                 question: 'Is this question 2 ?',
                 answer: 'sdvsdgvwer', 
                 options: ['option', 'option', 'option' , 'option']
-            }, {
-                id: uuid(), 
-                question: 'Is this question 3 ?',
-                answer: 'abc', 
-                options: ['option', 'option', 'option' , 'option']
-            },{
-                id: uuid(), 
-                question: 'Is this question 1 ?',
-                answer: 'abc', 
-                options: ['a', 'b', 'c' , 'd']
-            }, {
-                id: uuid(), 
-                question: 'Is this question 2 ?',
-                answer: 'sdvsdgvwer', 
-                options: ['option', 'option', 'option' , 'option']
-            }, {
-                id: uuid(), 
-                question: 'Is this question 3 ?',
-                answer: 'abc', 
-                options: ['option', 'option', 'option' , 'option']
-            },{
-                id: uuid(), 
-                question: 'Is this question 1 ?',
-                answer: 'abc', 
-                options: ['a', 'b', 'c' , 'd']
-            }, {
-                id: uuid(), 
-                question: 'Is this question 2 ?',
-                answer: 'sdvsdgvwer', 
-                options: ['option', 'option', 'option' , 'option']
-            }, {
-                id: uuid(), 
-                question: 'Is this question 3 ?',
-                answer: 'abc', 
-                options: ['option', 'option', 'option' , 'option']
-            }, {
-                id: uuid(), 
-                question: 'this isdvnolkwegnvboi bvnerwotbvnov rwkjlbn wretjklbvn dfjk jk ktr bjpiktrweb jikfg kjrt bnjpwkotrbn ojiwrtebwejkogns v regnerwogvnwerokjgvnerkjovn b;jnkserbgnoijenvoijernviojq aevkjewrbfvoQAWD[M VLKERWNVOERNVM, DWERKNVBEORGVNDKFLJV NFEVBNERTOJVNBWEOV LDLKERRNVBOERNVDF EWOVBNWEROJVNOIQAVC OW[IV EOVNQWER[OVIQ[V0O[POF[WCVNKPWOEFJIOPW[QFNJOIWFGOIW[VEROI[QGVQOI[RGOEIQ[NHRGOIQRENGENV DF EO[QNVQERWO[IVQHN NOWI[FV ?',
-                answer: 'ciwfw',
-                options: ['option', 'option', 'option', 'option']
-            }, {
-                id: uuid(), 
-                question: 'rteijgnb ndvnoewv veowegv vijrwevpij vjiervwpev vnoewvnep loawmp[fm nvwolevnoelv vevnjev vknkjwvjivbwei kvkjdcnbqweo[co[ c kvneqwkjvbe vcnewrv  ivpbeiv evcqwerfg wefqweo vervev wvbewb nopbpeve ervberw bvowen aevnoen vnow;eev vel;vn avewrlnq vvbneo v;en evbelven velwve evoen bnrel lerngeolq ovqenovkenr evevreq veqrlv vqge wqniqwiuo vqwfvnbv vqergvqe  kjn ipccnq vvenovnq vneoreronv voenve?', 
-                answer: 'optionOne', 
-                options: ['option', 'option', 'option', 'option']
             }], 
             quizSubmitted: false, 
             verified: false, 
@@ -92,9 +47,11 @@ class QuestionDrawer extends Component {
     }
 
     validateField(input) {
+        const { question, verified } = this.state; 
         let field = input.trim(); 
         
         if (field.length === 0) {
+
             return true; 
         }
         return false; 
