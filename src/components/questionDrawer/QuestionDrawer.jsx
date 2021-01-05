@@ -154,9 +154,7 @@ class QuestionDrawer extends Component {
             return <div className="questionTextfield">
             <TextField 
                 autoFocus
-                error={() => this.validateField(question)}
                 fullWidth
-                helperText='question field cannot be help empty'
                 multiline
                 name="question"
                 label="new question" 
