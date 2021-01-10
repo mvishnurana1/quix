@@ -5,7 +5,7 @@ import { Button,
 import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 import React, { Component } from 'react';
 import { GoQuestion } from "react-icons/go";
-import { IoAddCircle, IoEllipseSharp } from "react-icons/io5";
+import { IoAddCircle, IoEllipseSharp, IoReturnUpBackSharp } from "react-icons/io5";
 import uuid from 'react-uuid'; 
 
 import './QuestionDrawer.css'; 
@@ -43,18 +43,29 @@ class QuestionDrawer extends Component {
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value
-        }); 
+        }, () => this.validateField()); 
     }
 
-    validateField(input) {
-        const { question, verified } = this.state; 
-        let field = input.trim(); 
-        
-        if (field.length === 0) {
+    validateField() {
+        const { 
+            answer, optionOne, optionTwo, 
+            optionThree, optionFour, question, 
+            verified,
+        } = this.state; 
+    
+        const ques = question.trim();
+        const options = [ optionOne, optionTwo, optionThree, optionFour ]; 
+        const validOptions = options.filter((option) => option.length > 0); 
 
-            return true; 
+        if ((ques.length > 0) && (validOptions.length >= 2) && (answer != null)) {
+            this.setState({ verified: true });
+            console.log('Verified: ', verified);
         }
-        return false; 
+
+        if ((ques.length === 0) && (validOptions.length < 2) && (answer === null)) {
+            this.setState({ verified: false }); 
+            console.log('verified: ', verified); 
+        }
     }
 
     async onFormSubmit(event) {
@@ -69,8 +80,6 @@ class QuestionDrawer extends Component {
 
         const optionsList = []; 
         const questionAnswerSet = []; 
-
-        // verify state variables if they're valid
 
         optionsList.push(optionOne);
         optionsList.push(optionTwo);
@@ -90,7 +99,7 @@ class QuestionDrawer extends Component {
             resolve)
         ); 
 
-        console.log('Q And A list: ', this.state.questionAnswerPair); 
+        // console.log('Q And A list: ', this.state.questionAnswerPair); 
 
         this.setState({
             addingQuestion: false, 
@@ -106,7 +115,7 @@ class QuestionDrawer extends Component {
     }
 
     renderQuestionTextfield() {
-        const {  addingQuestion, question } = this.state;
+        const {  addingQuestion, question, verified } = this.state;
 
         if (addingQuestion) {
             return <div className="questionTextfield">
@@ -131,6 +140,54 @@ class QuestionDrawer extends Component {
         </div>
         }
     }
+
+    renderQuestionSubmitButtons() {
+        const { verified } = this.state; 
+
+        if (verified) 
+            return (<> 
+            <div>
+                <Button 
+                    color="primary" 
+                    variant="outlined"
+                    onClick={(event) => this.onFormSubmit(event)}
+                >
+                    Add
+                </Button>
+            </div>
+            <div>
+                <Button 
+                    color="primary" 
+                    variant="outlined"
+                    onClick={() => this.setState({ addingQuestion: false })}
+                >
+                    Cancel
+                </Button>
+            </div>
+            </>)
+            
+            return <> 
+                <div>
+                    <Button 
+                        color="primary" 
+                        disabled
+                        variant="outlined"
+                        onClick={() =>null}
+                    >
+                        Add
+                    </Button>
+                </div>
+                <div>
+                    <Button 
+                        color="primary" 
+                        variant="outlined"
+                        onClick={() => this.setState({ addingQuestion: false })}
+                    >
+                        Cancel
+                    </Button>
+                </div>
+            </>
+        }
 
     renderOptionsTextFields() {
         const { addingQuestion, answer } = this.state; 
@@ -214,51 +271,7 @@ class QuestionDrawer extends Component {
                     value={this.state.optionFour}
                 />
             </div>
-            {
-                this.state.verified ? 
-                <>
-                <div>
-                    <Button 
-                        color="primary" 
-                        variant="outlined"
-                        onClick={(event) => this.onFormSubmit(event)}
-                    >
-                        Add
-                    </Button>
-                </div>
-                <div>
-                    <Button 
-                        color="primary" 
-                        variant="outlined"
-                        onClick={() => this.setState({ addingQuestion: false })}
-                    >
-                        Cancel
-                    </Button>
-                </div>
-                </>
-                : <>
-                <div>
-                    <Button 
-                        color="primary" 
-                        disabled
-                        variant="outlined"
-                        onClick={(event) => this.onFormSubmit(event)}
-                    >
-                        Add
-                    </Button>
-                </div>
-                <div>
-                    <Button 
-                        color="primary" 
-                        variant="outlined"
-                        onClick={() => this.setState({ addingQuestion: false })}
-                    >
-                        Cancel
-                    </Button>
-                </div>
-                </>
-            }
-
+            {this.renderQuestionSubmitButtons()}
         </div>
         }
     }
@@ -277,7 +290,7 @@ class QuestionDrawer extends Component {
                 <div style={{ alignItems: 'center', display: 'flex', justifyContent: 'space-evenly'}}>
                 <div className="logoContainer">
                     <h3> Add Question </h3>
-                    <IoAddCircle className="logo" onClick={() => this.setState({ addingQuestion: true }) }  />
+                    <IoAddCircle className="logo" onClick={() => this.setState({ addingQuestion: true, verified: false }) }  />
                 </div>
                 {(questionAnswerPair.length >= 1) 
                     ? <div className="submitQuizButton">
