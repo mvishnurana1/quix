@@ -46,26 +46,28 @@ class QuestionDrawer extends Component {
         }, () => this.validateField()); 
     }
 
-    validateField() {
+    async validateField() {
         const { 
             answer, optionOne, optionTwo, 
             optionThree, optionFour, question, 
-            verified,
+            verified
         } = this.state; 
     
         const ques = question.trim();
         const options = [ optionOne, optionTwo, optionThree, optionFour ]; 
         const validOptions = options.filter((option) => option.length > 0); 
 
-        if ((ques.length > 0) && (validOptions.length >= 2) && (answer != null)) {
-            this.setState({ verified: true });
-            console.log('Verified: ', verified);
-        }
-
-        if ((ques.length === 0) && (validOptions.length < 2) && (answer === null)) {
-            this.setState({ verified: false }); 
-            console.log('verified: ', verified); 
-        }
+        if (!verified && (ques.length > 0) && (validOptions.length >= 2)) {
+            await new Promise (resolve => 
+                this.setState({ verified: true }, 
+                resolve)
+            ); 
+        } else {
+            await new Promise (resolve => 
+                this.setState({ verified: false }, 
+                resolve)
+            );
+        }  
     }
 
     async onFormSubmit(event) {
@@ -99,8 +101,6 @@ class QuestionDrawer extends Component {
             resolve)
         ); 
 
-        // console.log('Q And A list: ', this.state.questionAnswerPair); 
-
         this.setState({
             addingQuestion: false, 
             answer: '',
@@ -115,7 +115,7 @@ class QuestionDrawer extends Component {
     }
 
     renderQuestionTextfield() {
-        const {  addingQuestion, question, verified } = this.state;
+        const {  addingQuestion, question } = this.state;
 
         if (addingQuestion) {
             return <div className="questionTextfield">
