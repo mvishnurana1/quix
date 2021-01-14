@@ -25,8 +25,6 @@ class QuestionPreview extends Component {
 
     toggleOptions() {
         const { expandedID, expandedList } = this.state; 
-        console.log('expandedID : ', expandedID); 
-
         const index = expandedList.indexOf(expandedID); 
 
         if (index === -1) {
