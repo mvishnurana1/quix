@@ -65,8 +65,9 @@ class QuestionPreview extends Component {
             <IconButton>
                 <CreateIcon onClick={() => this.setState({ edit: !edit, editID: id, expanded: false })} />
             </IconButton>
-            {(edit && (editID === id)) ? <input>{this.props.question}</input>
-                    : null 
+            {(edit && (editID === id)) 
+                ? <input value={question} />
+                : null 
             }
 
             <IconButton>
