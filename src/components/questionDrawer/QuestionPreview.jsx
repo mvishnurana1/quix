@@ -9,15 +9,13 @@ class QuestionPreview extends Component {
     constructor(props) {
         super(props); 
         this.state = {
+            edit: false,
+            editID: null, 
             expanded: false,
             exapandedID: null,
             expandedList: [],
         }
     } 
-
-    editQuestion() {
-
-    }
 
     toggleEditQuestion() {
 
@@ -43,7 +41,7 @@ class QuestionPreview extends Component {
 
     render() {
         const { questionAnswerPair } = this.props; 
-        const { expanded, expandedList } = this.state; 
+        const { edit, editID, expanded, expandedList } = this.state; 
 
         return questionAnswerPair.map(({ id, question, options }, index) => 
         <div key={id} style={{ margin: '0 10%'}}>
@@ -65,8 +63,11 @@ class QuestionPreview extends Component {
             </IconButton>
             
             <IconButton>
-                <CreateIcon />
+                <CreateIcon onClick={() => this.setState({ edit: !edit, editID: id, expanded: false })} />
             </IconButton>
+            {(edit && (editID === id)) ? <input>{this.props.question}</input>
+                    : null 
+            }
 
             <IconButton>
                 <ClearIcon />
