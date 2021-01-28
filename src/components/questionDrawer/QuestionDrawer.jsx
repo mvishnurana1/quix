@@ -144,9 +144,8 @@ class QuestionDrawer extends Component {
     renderQuestionSubmitButtons() {
         const { verified } = this.state; 
 
-        if (verified) 
-            return (<> 
-            <div>
+        if (verified) {
+            return <>
                 <Button 
                     color="primary" 
                     variant="outlined"
@@ -154,8 +153,6 @@ class QuestionDrawer extends Component {
                 >
                     Add
                 </Button>
-            </div>
-            <div>
                 <Button 
                     color="primary" 
                     variant="outlined"
@@ -163,31 +160,27 @@ class QuestionDrawer extends Component {
                 >
                     Cancel
                 </Button>
-            </div>
-            </>)
-            
-            return <> 
-                <div>
-                    <Button 
-                        color="primary" 
-                        disabled
-                        variant="outlined"
-                        onClick={() =>null}
-                    >
-                        Add
-                    </Button>
-                </div>
-                <div>
-                    <Button 
-                        color="primary" 
-                        variant="outlined"
-                        onClick={() => this.setState({ addingQuestion: false })}
-                    >
-                        Cancel
-                    </Button>
-                </div>
             </>
         }
+
+        return <> 
+            <Button 
+                color="primary" 
+                disabled
+                variant="outlined"
+                onClick={() =>null}
+            >
+                Add
+            </Button>
+            <Button 
+                color="primary" 
+                variant="outlined"
+                onClick={() => this.setState({ addingQuestion: false })}
+            >
+                Cancel
+            </Button>
+        </>
+    }
 
     renderOptionsTextFields() {
         const { addingQuestion, answer } = this.state; 
@@ -298,7 +291,7 @@ class QuestionDrawer extends Component {
                         <CheckCircleRoundedIcon className="logo" onClick={() => this.setState({ quizSubmitted: true }) }  />
                     </div>
                     : null
-                }
+                } 
                 </div>
                 } 
                 {this.renderQuestionTextfield()}
