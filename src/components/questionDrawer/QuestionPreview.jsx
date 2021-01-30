@@ -1,5 +1,5 @@
 import React, { Component } from 'react'; 
-import { Collapse } from '@material-ui/core';
+import { Collapse, Input, TextField } from '@material-ui/core';
 import ClearIcon from '@material-ui/icons/Clear';
 import CreateIcon from '@material-ui/icons/Create';
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -66,19 +66,37 @@ class QuestionPreview extends Component {
                 <CreateIcon onClick={() => this.setState({ edit: !edit, editID: id, expanded: false })} />
             </IconButton>
             {(edit && (editID === id)) 
-                ? <input value={question} />
+                ?   <>
+                        <Input 
+                            label='question'
+                            size='medium' 
+                            value={question} 
+                            variant='outline'
+                        />
+                        <div style={{ display: 'flex', flexDirection: 'column'}}>
+                            {options.map((option) => 
+                                <Input 
+                                    size='small' 
+                                    value={option} 
+                                    variant='outlined'
+                                />
+                            )}
+                        </div>
+                    </>
                 : null 
             }
 
-            <IconButton>
+            <IconButton style={ edit ? { display: 'none' } : null }>
                 <ClearIcon />
             </IconButton>
-            <Collapse in={(expandedList.includes(id) && expanded)}>
+            {!edit && (<Collapse 
+                in={(expandedList.includes(id) && expanded)}
+            >
                 {options.map((option) => <div>
                         {option}
                     </div>
                 )} 
-            </Collapse>
+            </Collapse>)}
         </div>
         )
     }
