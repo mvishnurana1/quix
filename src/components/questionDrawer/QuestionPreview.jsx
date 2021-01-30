@@ -49,18 +49,20 @@ class QuestionPreview extends Component {
                 <h3 style={{marginRight: '1rem', minWidth: '3rem'}}>Q {index + 1}.</h3>
                 <h3 className="questionOptions" style={{ marginBottom: 0 }}>{question}</h3>
             </div>
-            <IconButton
+            {!edit && (<IconButton
                 aria-label="show more"
                 onClick={() => this.setState({ 
                     expanded: true,
                     expandedID: id, 
                 }, () => this.toggleOptions())}
-                style={(expandedList.includes(id)) ? { backgroundColor: 'black', color: 'white' }: null }
+                style={
+                    (expandedList.includes(id)) ? { backgroundColor: 'black', color: 'white' }: null 
+                }
             >
                 <ExpandMoreIcon 
                     style={(expandedList.includes(id)) ? {transform: 'rotate(0deg)' }: {transform: 'rotate(180deg)' }} 
                 />
-            </IconButton>
+            </IconButton>)}
             
             <IconButton>
                 <CreateIcon onClick={() => this.setState({ edit: !edit, editID: id, expanded: false })} />
